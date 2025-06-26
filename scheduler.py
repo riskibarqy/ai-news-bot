@@ -22,4 +22,4 @@ schedule.every().day.at("21:00").do(post_global_evening)   # 9 PM
 print("⏳ AI News Bot Scheduler running...")
 while True:
     schedule.run_pending()
-    time.sleep(30)
+    time.sleep(60)  # prevent CPU burn
