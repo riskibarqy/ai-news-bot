@@ -15,9 +15,9 @@ def post_global_evening():
     run_bot(limit=1, region="global")
 
 # Schedule jobs (adjust for your timezone)
-schedule.every().day.at("08:00").do(post_indo_morning)     # 8 AM
-schedule.every().day.at("13:00").do(post_indo_afternoon)   # 1 PM
-schedule.every().day.at("19:00").do(post_global_evening)   # 7 PM
+schedule.every().day.at("09:00").do(post_indo_morning)     # 9 AM
+schedule.every().day.at("14:00").do(post_indo_afternoon)   # 2 PM
+schedule.every().day.at("21:00").do(post_global_evening)   # 9 PM
 
 print("⏳ AI News Bot Scheduler running...")
 while True:
