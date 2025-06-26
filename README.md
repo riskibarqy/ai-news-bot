@@ -1,5 +1,3 @@
-# ai-news-bot
-
 # 🧠 AI News Bot — Powered by Python, Posting Like Sheldon Cooper
 
 An automated AI-powered news bot that posts hot programming, startup, and tech-related news on Twitter — with a distinct Sheldon Cooper personality. It posts 3 times daily:
