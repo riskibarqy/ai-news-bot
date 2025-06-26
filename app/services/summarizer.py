@@ -1,12 +1,16 @@
-import openai
 from config import settings
+import openai
+from app.services.sheldonizer import sheldonize
 
 openai.api_key = settings.OPENAI_API_KEY
 
-def summarize_news(title: str, url: str) -> str:
-    prompt = f"Summarize this news article for developers in 1 sentence:\nTitle: {title}\nURL: {url}"
+def summarize_news(news_content: str) -> str:
     response = openai.ChatCompletion.create(
         model="gpt-4",
-        messages=[{"role": "user", "content": prompt}]
+        messages=[
+            {"role": "system", "content": "Summarize this article in 1 sentence, technical, sarcastic and to the point with sheldon cooper style explain."},
+            {"role": "user", "content": news_content}
+        ]
     )
-    return response.choices[0].message.content.strip()
+    summary = response.choices[0].message.content.strip()
+    return sheldonize(summary)
