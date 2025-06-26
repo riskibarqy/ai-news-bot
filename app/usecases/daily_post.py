@@ -9,4 +9,4 @@ def run_daily_post(limit=3, region=None):
     for raw in articles:
         title, url = raw.split(" - ", 1)
         summary = summarize_news(f"{title} {url}")
-        post_to_twitter(f"📰 {summary}\n🔗 {url}")
+        post_to_twitter(f"{summary}\n{url}")
