@@ -1,5 +1,4 @@
 import requests
-from app.domain.entities import NewsPost
 from app.services.summarizer import summarize_news
 from app.services.twitter import post_to_twitter
 from app.sources.source_aggregator import get_top_news
