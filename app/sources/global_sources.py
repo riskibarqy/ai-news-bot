@@ -1,5 +1,6 @@
 import feedparser
 import requests
+from app.utils.news_keywords import NEWS_KEYWORDS
 
 def fetch_hackernews(n=1):
     url = "https://hn.algolia.com/api/v1/search?tags=front_page"
@@ -22,7 +23,7 @@ def fetch_devto(n=1):
     for entry in feed.entries:
         title = entry.title.strip()
         link = entry.link.strip()
-        if any(kw in title.lower() for kw in ["startup", "programming", "ai", "dev", "corporate"]):
+        if any(kw in title.lower() for kw in NEWS_KEYWORDS):
             articles.append(f"{title} - {link}")
         if len(articles) >= n:
             break
@@ -35,7 +36,7 @@ def fetch_techcrunch(n=1):
     for entry in feed.entries:
         title = entry.title.strip()
         link = entry.link.strip()
-        if any(kw in title.lower() for kw in ["startup", "ai", "corporate", "programmer", "developer"]):
+        if any(kw in title.lower() for kw in NEWS_KEYWORDS):
             articles.append(f"{title} - {link}")
         if len(articles) >= n:
             break
