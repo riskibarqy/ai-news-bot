@@ -42,5 +42,5 @@ NEWS_KEYWORDS = [
 
     #Eccomurz style
     "phk", "layoff", "burnout", "exploited", "startup culture", 
-    "unpaid", "gaji", "korporat", "startup", "rumor", "gosip"
+    "unpaid", "gaji", "korporat", "startup"
 ]
