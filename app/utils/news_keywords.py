@@ -1,6 +1,10 @@
 # keywords.py
 
 NEWS_KEYWORDS = [
+    #Eccomurz style
+    "phk", "layoff", "burnout", "exploited", "startup culture", 
+    "unpaid", "gaji", "korporat", "startup"
+
     # Startup / Business Growth
     "startup", "start-up", "scaleup", "scale-up", "funding", "investasi", "pendanaan",
     "venture capital", "angel investor", "seed round", "series a", "series b", "ipo",
@@ -39,8 +43,4 @@ NEWS_KEYWORDS = [
     # Misc
     "hackathon", "coding bootcamp", "developer", "software engineer", "programmer",
     "growth", "trend", "future", "technology trends", "market trends"
-
-    #Eccomurz style
-    "phk", "layoff", "burnout", "exploited", "startup culture", 
-    "unpaid", "gaji", "korporat", "startup"
 ]

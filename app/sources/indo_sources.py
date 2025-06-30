@@ -1,9 +1,10 @@
 import feedparser
+import numpy as np
+import random
 from app.utils.news_keywords import NEWS_KEYWORDS
 from app.services.openai import client
-import numpy as np
 
-# In-memory storage of embeddings of previous articles (persist this in real app)
+# In-memory storage (consider persisting this)
 previous_embeddings = []
 
 def embed_text(text: str) -> np.ndarray:
@@ -38,21 +39,20 @@ def from_feedparser(url: str, n: int) -> list[str]:
                 break
     return articles
 
-# List of RSS-based sources
+# Expanded + shuffled RSS sources
 RSS_SOURCES = [
-    "https://news.dailysocial.id/feed/",
-    "https://id.techinasia.com/feed",
     "https://www.cnbcindonesia.com/tech/rss",
-    "https://rss.tempo.co/tekno",
-    "https://feed.liputan6.com/rss/tekno"
+    "https://feed.liputan6.com/rss/tekno",
+    "https://inet.detik.com/rss",                
+    "https://www.merdeka.com/feed/teknologi",
 ]
 
 def fetch_indo_news(n=1) -> list[str]:
     articles = []
+    shuffled_sources = RSS_SOURCES[:]
+    random.shuffle(shuffled_sources)
 
-    # Fetch from RSS sources
-    for rss_url in RSS_SOURCES:
+    for rss_url in shuffled_sources:
         articles.extend(from_feedparser(rss_url, n))
 
-    # Limit total size if needed
     return articles[:n * len(RSS_SOURCES)]

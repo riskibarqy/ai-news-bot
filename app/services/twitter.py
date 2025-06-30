@@ -1,6 +1,10 @@
 import traceback
 import tweepy
 from config import settings
+from app.usecases.daily_post import run_daily_post  # make sure this doesn't create circular import
+
+MAX_TWEET_RETRY = 1
+tweet_retry_counter = {"count": 0}
 
 client = tweepy.Client(
     bearer_token=settings.TWITTER_BEARER_TOKEN,
@@ -30,9 +34,21 @@ def post_to_twitter(text: str):
         print("  Traceback:")
         traceback.print_exc()
 
+        # Retry logic
+        if tweet_retry_counter["count"] < MAX_TWEET_RETRY:
+            tweet_retry_counter["count"] += 1
+            print("🔁 Retrying post via run_daily_post() due to Tweepy failure...")
+            run_daily_post(limit=1)
+
     except Exception as e:
         print("❌ Unexpected error occurred:")
         print(f"  Type    : {type(e).__name__}")
         print(f"  Message : {e}")
         print("  Traceback:")
         traceback.print_exc()
+
+        # Retry logic
+        if tweet_retry_counter["count"] < MAX_TWEET_RETRY:
+            tweet_retry_counter["count"] += 1
+            print("🔁 Retrying post via run_daily_post() due to", e)
+            run_daily_post(limit=1)
